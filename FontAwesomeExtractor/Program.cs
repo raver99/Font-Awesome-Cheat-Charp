@@ -45,7 +45,7 @@ namespace FontAwesomeExtractor
                         break;
                 }
 
-                HtmlNodeCollection session_articles = session.SelectNodes("//article");
+                HtmlNodeCollection session_articles = session.SelectNodes(".//article");
                 //Iterate through the Article List to process
                 foreach (HtmlNode article in session_articles)
                 {
@@ -54,10 +54,11 @@ namespace FontAwesomeExtractor
                     HtmlNode dlNode = article.ChildNodes[1];
                     HtmlNode ddNode = dlNode.ChildNodes[5];
                     string unicode = ddNode.InnerText;
-                    //string output = $@" public static string {Processor.Edit(title)} = ""\u{unicode}"";"; //&#x
-                    string output = $@"{{ cssClass:""{mainClass} fa-{title}"", ""code"": ""&#x{unicode};"" }},";
 
-                    outputString += output + System.Environment.NewLine;
+                    //string output = $@" public static string {Processor.Edit(title)} = ""\u{unicode}"";"; //&#x
+                    string output = $@"{{cssClass:""{mainClass} fa-{title}"",""code"":""&#x{unicode};""}},";
+
+                    outputString += output;
                 }
             }
 
