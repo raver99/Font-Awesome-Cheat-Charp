@@ -55,9 +55,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="5.8.2-free.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="5.8.2-pro.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
