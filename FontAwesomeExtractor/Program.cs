@@ -1,7 +1,9 @@
 ﻿using HtmlAgilityPack;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace FontAwesomeExtractor
@@ -17,7 +19,7 @@ namespace FontAwesomeExtractor
 
         private static void Main(string[] args)
         {
-            string folder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\html\";
+            string folder = AppDomain.CurrentDomain.BaseDirectory + @"/html/";
             string[] filePaths = Directory.GetFiles(folder, "*.html");
 
             string outputString = "";
@@ -27,7 +29,7 @@ namespace FontAwesomeExtractor
             }
 
             var systemPath = Directory.GetCurrentDirectory();
-            string filePath = Path.Combine(systemPath, $"fontAwesome.json");
+            string filePath = Path.Combine(systemPath, $"fontAwesome.csv");
             Console.WriteLine($"Create file at: {filePath}");
             using (FileStream fs = File.Create(filePath))
             {
@@ -88,7 +90,7 @@ namespace FontAwesomeExtractor
                     HtmlNode ddNode = dlNode.SelectSingleNode("dd[last()]");
                     string unicode = ddNode.InnerText;
 
-                    string output = $@"{{cssClass:""{mainClass} fa-{title}"",""code"":""&#x{unicode};""}},";
+                    string output = mainClass + " fa-" + title + "," + unicode + "\n";
 
                     result += output;
                 }
